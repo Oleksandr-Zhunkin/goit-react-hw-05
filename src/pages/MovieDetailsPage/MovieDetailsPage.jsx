@@ -40,9 +40,12 @@ const MovieDetailsPage = () => {
           <h3 className=" text-2xl font-bold">Overview</h3>
           <p className=" text-lg font-medium">{movie.overview}</p>
           <h3 className=" text-2xl font-bold">Genres</h3>
-          <ul>
+          <ul className="flex gap-5">
             {movie.genres?.map((genre) => (
-              <li className=" text-lg font-medium" key={genre.id}>
+              <li
+                className=" text-lg font-medium bg-blue-200 p-2 rounded-xl"
+                key={genre.id}
+              >
                 {genre.name}
               </li>
             ))}
@@ -66,6 +69,12 @@ const MovieDetailsPage = () => {
             to="reviews"
           >
             Reviews
+          </Link>
+          <Link
+            className=" text-lg p-2 px-8 bg-blue-200 text-blue-950 font-bold uppercase rounded-xl text-center"
+            to="videos"
+          >
+            Trailers
           </Link>
         </div>
         <Suspense fallback={null}>
