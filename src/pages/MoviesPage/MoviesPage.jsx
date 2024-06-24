@@ -1,37 +1,44 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import MovieList from "../../components/MovieList/MovieList";
 import { getFilteredMovies } from "../../api/movie_api";
-import { SearchContext } from "../../context/searchContext";
+
 import { useSearchParams } from "react-router-dom";
+import Loader from "../../components/Loader/Loader";
 
 const MoviesPage = () => {
   const [filteredMovies, setFilteredMovies] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
-  const [query, setQuery] = useState("");
-
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const { searchValue } = useContext(SearchContext);
+  const searchValue = searchParams.get("query");
 
   useEffect(() => {
-    setSearchParams(searchValue ? { query: searchValue } : {});
     const fetchFilteredMovie = async () => {
       try {
-        const movies = await getFilteredMovies(query, page);
+        setLoading(true);
+        const movies = await getFilteredMovies(searchValue, page);
 
-        setQuery(searchValue);
         setFilteredMovies(movies);
       } catch (error) {
         console.log(error);
+      } finally {
+        setLoading(false);
       }
     };
     fetchFilteredMovie();
-  }, [page, query, searchValue, setSearchParams]);
+  }, [page, searchValue]);
 
   return (
-    <div>
-      <MovieList movies={filteredMovies} />
-    </div>
+    <>
+      {loading ? (
+        <Loader />
+      ) : (
+        <div>
+          <MovieList movies={filteredMovies} />
+        </div>
+      )}
+    </>
   );
 };
 export default MoviesPage;

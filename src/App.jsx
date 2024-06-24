@@ -22,23 +22,21 @@ function App() {
   return (
     <Section>
       <Container>
-        <ContextProvider>
-          <Suspense fallback={null}>
-            <Routes>
-              <Route path="/" element={<Navigation />}>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/movies" element={<MoviesPage />} />
-                <Route path="/movies/:movieId" element={<MovieDetailsPage />}>
-                  <Route path="credits" element={<MovieCast />} />
-                  <Route path="reviews" element={<MovieReviews />} />
-                  <Route path="videos" element={<MovieVideos />} />
-                </Route>
+        <Suspense fallback={null}>
+          <Routes>
+            <Route path="/" element={<Navigation />}>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/movies" element={<MoviesPage />} />
+              <Route path="/movies/:movieId" element={<MovieDetailsPage />}>
+                <Route path="credits" element={<MovieCast />} />
+                <Route path="reviews" element={<MovieReviews />} />
+                <Route path="videos" element={<MovieVideos />} />
               </Route>
+            </Route>
 
-              <Route path="*" element={<NotFoundPage />} />
-            </Routes>
-          </Suspense>
-        </ContextProvider>
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
+        </Suspense>
       </Container>
     </Section>
   );

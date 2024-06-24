@@ -1,13 +1,12 @@
-import { useContext } from "react";
 import { HiSearch } from "react-icons/hi";
-import { SearchContext } from "../../context/searchContext";
+import { useSearchParams } from "react-router-dom";
 
 const SearchBar = () => {
-  const { setSearchValue } = useContext(SearchContext);
+  const [searchParams, setSearchParams] = useSearchParams();
   const handleSearchMovie = (e) => {
     e.preventDefault();
-
-    setSearchValue(e.target.elements.search.value);
+    const searchValue = e.target.elements.search.value;
+    setSearchParams(searchValue ? { query: searchValue } : {});
     e.target.reset();
   };
   return (
