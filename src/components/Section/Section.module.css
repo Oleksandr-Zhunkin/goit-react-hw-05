@@ -1,4 +1,5 @@
 .section {
   padding: 20px 0;
-  background-color: lightslategray;
+  background-color: #778899;
+  min-height: 100vh;
 }
