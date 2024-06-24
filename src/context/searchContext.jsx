@@ -2,7 +2,7 @@ import { createContext, useState } from "react";
 
 export const SearchContext = createContext();
 
-export const ContextProvider = ({ children }) => {
+const ContextProvider = ({ children }) => {
   const [searchValue, setSearchValue] = useState("");
 
   const contextValue = {
@@ -16,3 +16,4 @@ export const ContextProvider = ({ children }) => {
     </SearchContext.Provider>
   );
 };
+export default ContextProvider;

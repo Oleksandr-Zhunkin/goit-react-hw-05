@@ -1,33 +1,41 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import Container from "./components/Container/Container";
+import ContextProvider from "./context/searchContext";
+import { Suspense, lazy } from "react";
 import Section from "./components/Section/Section";
-import { HomePage } from "./pages/HomePage/HomePage";
-import { MovieDetailsPage } from "./pages/MovieDetailsPage/MovieDetailsPage";
-import { NotFoundPage } from "./pages/NotFoundPage/NotFoundPage";
-import { MoviesPage } from "./pages/MoviesPage/MoviesPage";
-import { Navigation } from "./components/Navigation/Navigation";
-import { ContextProvider } from "./context/searchContext";
-import { MovieCast } from "./components/MovieCast/MovieCast";
-import { MovieReviews } from "./components/MovieReviews/MovieReviews";
+import Container from "./components/Container/Container";
+
+const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
+const MovieDetailsPage = lazy(() =>
+  import("./pages/MovieDetailsPage/MovieDetailsPage")
+);
+const NotFoundPage = lazy(() => import("./pages/NotFoundPage/NotFoundPage"));
+const MoviesPage = lazy(() => import("./pages/MoviesPage/MoviesPage"));
+const Navigation = lazy(() => import("./components/Navigation/Navigation"));
+const MovieCast = lazy(() => import("./components/MovieCast/MovieCast"));
+const MovieReviews = lazy(() =>
+  import("./components/MovieReviews/MovieReviews")
+);
 
 function App() {
   return (
     <Section>
       <Container>
         <ContextProvider>
-          <Routes>
-            <Route path="/" element={<Navigation />}>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/movies" element={<MoviesPage />} />
-              <Route path="/movies/:movieId" element={<MovieDetailsPage />}>
-                <Route path="credits" element={<MovieCast />} />
-                <Route path="reviews" element={<MovieReviews />} />
+          <Suspense fallback={null}>
+            <Routes>
+              <Route path="/" element={<Navigation />}>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/movies" element={<MoviesPage />} />
+                <Route path="/movies/:movieId" element={<MovieDetailsPage />}>
+                  <Route path="credits" element={<MovieCast />} />
+                  <Route path="reviews" element={<MovieReviews />} />
+                </Route>
               </Route>
-            </Route>
 
-            <Route path="*" element={<NotFoundPage />} />
-          </Routes>
+              <Route path="*" element={<NotFoundPage />} />
+            </Routes>
+          </Suspense>
         </ContextProvider>
       </Container>
     </Section>

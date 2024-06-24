@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { HiSearch } from "react-icons/hi";
 import { SearchContext } from "../../context/searchContext";
 
-export const SearchBar = () => {
+const SearchBar = () => {
   const { setSearchValue } = useContext(SearchContext);
   const handleSearchMovie = (e) => {
     e.preventDefault();
@@ -36,3 +36,5 @@ export const SearchBar = () => {
     </div>
   );
 };
+
+export default SearchBar;

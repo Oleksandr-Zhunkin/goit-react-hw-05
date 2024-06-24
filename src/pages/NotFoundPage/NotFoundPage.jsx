@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import notFound from "../../image/not-found-01.png";
 
-export const NotFoundPage = () => {
+const NotFoundPage = () => {
   return (
     <div className="p-5 ">
       <Link
@@ -18,3 +18,4 @@ export const NotFoundPage = () => {
     </div>
   );
 };
+export default NotFoundPage;

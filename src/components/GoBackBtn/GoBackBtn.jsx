@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { MdOutlineKeyboardBackspace } from "react-icons/md";
 
-export const GoBackBtn = ({ path }) => {
+const GoBackBtn = ({ path }) => {
   return (
     <div className="relative">
       <Link
@@ -14,3 +14,5 @@ export const GoBackBtn = ({ path }) => {
     </div>
   );
 };
+
+export default GoBackBtn;

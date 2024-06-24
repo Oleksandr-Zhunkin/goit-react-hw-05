@@ -1,10 +1,10 @@
 import { useContext, useEffect, useState } from "react";
-import { MovieList } from "../../components/MovieList/MovieList";
+import MovieList from "../../components/MovieList/MovieList";
 import { getFilteredMovies } from "../../api/movie_api";
 import { SearchContext } from "../../context/searchContext";
 import { useSearchParams } from "react-router-dom";
 
-export const MoviesPage = () => {
+const MoviesPage = () => {
   const [filteredMovies, setFilteredMovies] = useState([]);
   const [page, setPage] = useState(1);
   const [query, setQuery] = useState("");
@@ -34,3 +34,4 @@ export const MoviesPage = () => {
     </div>
   );
 };
+export default MoviesPage;

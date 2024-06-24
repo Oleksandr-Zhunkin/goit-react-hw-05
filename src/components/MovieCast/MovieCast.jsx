@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { getActors } from "../../api/movie_api";
 import { baseListImgUrl } from "../MovieList/MovieList";
 
-export const MovieCast = () => {
+const MovieCast = () => {
   const [actors, setActors] = useState([]);
   const { movieId } = useParams();
 
@@ -42,3 +42,4 @@ export const MovieCast = () => {
     </ul>
   );
 };
+export default MovieCast;

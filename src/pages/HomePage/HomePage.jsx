@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { MovieList } from "../../components/MovieList/MovieList";
+import MovieList from "../../components/MovieList/MovieList";
 import { getTrendMovies } from "../../api/movie_api";
 
-export const HomePage = () => {
+const HomePage = () => {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
@@ -27,3 +27,4 @@ export const HomePage = () => {
     </div>
   );
 };
+export default HomePage;

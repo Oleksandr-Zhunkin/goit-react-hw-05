@@ -1,10 +1,10 @@
-import { useEffect, useRef, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import { getMovieDetail } from "../../api/movie_api";
 import { Link, Outlet, useLocation, useParams } from "react-router-dom";
 import { baseListImgUrl } from "../../components/MovieList/MovieList";
-import { GoBackBtn } from "../../components/GoBackBtn/GoBackBtn";
+import GoBackBtn from "../../components/GoBackBtn/GoBackBtn";
 
-export const MovieDetailsPage = () => {
+const MovieDetailsPage = () => {
   const [movie, setMovie] = useState({});
   const { movieId } = useParams();
   const location = useLocation();
@@ -68,8 +68,12 @@ export const MovieDetailsPage = () => {
             Reviews
           </Link>
         </div>
-        <Outlet />
+        <Suspense fallback={null}>
+          <Outlet />
+        </Suspense>
       </div>
     </div>
   );
 };
+
+export default MovieDetailsPage;

@@ -1,14 +1,14 @@
 import clsx from "clsx";
 import { NavLink, Outlet, useLocation } from "react-router-dom";
 import s from "../Navigation/Navigation.module.scss";
-import { useEffect, useState } from "react";
-import { SearchBar } from "../SearchBar/SearchBar";
+import { Suspense, useEffect, useState } from "react";
+import SearchBar from "../SearchBar/SearchBar";
 
 const buildLinkClass = ({ isActive }) => {
   return clsx(s.link, isActive && s.active);
 };
 
-export const Navigation = () => {
+const Navigation = () => {
   const [activeSearch, setActiveSearch] = useState(false);
 
   const location = useLocation();
@@ -34,7 +34,10 @@ export const Navigation = () => {
         </nav>
         {activeSearch && <SearchBar />}
       </header>
-      <Outlet />
+      <Suspense>
+        <Outlet />
+      </Suspense>
     </>
   );
 };
+export default Navigation;
