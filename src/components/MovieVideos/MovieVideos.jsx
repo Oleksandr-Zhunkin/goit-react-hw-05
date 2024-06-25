@@ -37,6 +37,7 @@ const MovieVideos = () => {
               <h3 className="text-2xl font-bold text-center mb-5">
                 {video.name}
               </h3>
+
               <iframe
                 width="100%"
                 height="500"
