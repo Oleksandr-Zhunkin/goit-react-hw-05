@@ -1,6 +1,5 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import ContextProvider from "./context/searchContext";
 import { Suspense, lazy } from "react";
 import Section from "./components/Section/Section";
 import Container from "./components/Container/Container";
